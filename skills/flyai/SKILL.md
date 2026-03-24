@@ -33,39 +33,82 @@ metadata:
       - "((search|find|recommend|book).*(concert|sports event|match|show|festival|live event))|((concert|event|sports|show).*(ticket|travel|hotel|flight))"
 ---
 
-# flyai Unified Entry
+# flyai
+Use `flyai-cli` to call Fliggy MCP services for travel search and booking scenarios.  
+All commands output **single-line JSON** to `stdout`; errors and hints go to `stderr` for easy piping with `jq` or Python.
 
-This file is the language router for flyai skill instructions and enforces global OTA-oriented response behavior.
+## Disclaimer
+This skill ships with an **experience** `FLYAI_APP_KEY` for trying the integration. It is not intended for production or high-volume use. For formal use, apply for an official key at [open.fly.ai](https://open.fly.ai/).
 
-## Routing Rule
+## Quick Start
 
-1. Detect the user's input language from the current request.
-2. If the input is Chinese, load and follow `references/SKILL_zh.md`.
-3. For all other languages, load and follow `references/SKILL_en.md`.
+1. **Verify setup**: run `node scripts/flyai.cjs fliggy-fast-search --query "what to do in Sanya"` and confirm JSON output.
+2. **List commands**: run `node scripts/flyai.cjs --help`.
+3. **Read command details**: see **`references/`** for required/optional args and field definitions (paths below).
 
-## Chinese Detection
+## Core Capabilities
 
-Treat the request as Chinese if one or more of the following are true:
-- The input contains Chinese characters.
-- The user explicitly asks in Chinese.
-- The conversation context clearly indicates Chinese output preference.
+### Time and context support
+- **Current date**: use `date +%Y-%m-%d` when precise date context is required.
 
-## Non-Chinese Handling
+### Broad travel discovery
+- **Travel meta search** (`fliggy-fast-search`): one natural-language query across hotels, flights, attraction tickets, performances, sports events, and cultural activities.
+  - **Hotel package**: lodging bundled with extra services.
+  - **Flight package**: flight bundled with extra services.
 
-If Chinese is not detected, always route to `references/SKILL_en.md`, including:
-- English
-- Japanese
-- Korean
-- French
-- German
-- Spanish
-- Any other non-Chinese language
+### Category-specific search
+- **Flight search** (`search-flight`): structured flight results for deep comparison.
+- **Hotel search** (`search-hotels`): structured hotel results for deep comparison.
+- **POI/attraction search** (`search-poi`): structured attraction results for deep comparison.
 
-When routed to `references/SKILL_en.md`, the assistant output language MUST be English only.
+## References
+Detailed command docs live in **`references/`** (one file per subcommand):
 
-## Conflict Resolution
+| Command | Doc |
+|--------|-----|
+| `fliggy-fast-search` | `references/fliggy-fast-search.md` |
+| `search-hotels` | `references/search-hotels.md` |
+| `search-flight` | `references/search-flight.md` |
+| `search-poi` | `references/search-poi.md` |
 
-- Language routing has top priority.
-- After routing, apply only the selected localized file as the instruction source.
-- If ambiguity exists, prefer `references/SKILL_zh.md` only when Chinese signals are explicit; otherwise use `references/SKILL_en.md`.
-- If the user input is non-Chinese, this file enforces English output even when there are other language preferences in context.
+## Friendly Display Requirements
+- **General principle**: output must be valid `markdown`, with rich text+image presentation. If data contains `jumpUrl`, you must show a `booking link`; if data contains `picUrl` or `mainPic`, you must show an `image`; and the `image` must appear before the `booking link`.
+- **Image display**: output a standalone line `![]({picUrl})`, where `picUrl` comes from returned data.
+  > For `search-hotels`, output `![]({mainPic})`, where `mainPic` comes from returned data
+- **Booking link**: output a standalone line `[Click to book]({jumpUrl})`, where `jumpUrl` comes from returned data.
+  > For `search-flight`, output `[Click to book]({jumpUrl})`
+  > For `search-hotels`, output `[Click to book]({detailUrl})`, where `detailUrl` comes from returned data
+  > For `search-poi`, output `[Click to book]({jumpUrl})`
+- **Hierarchy**: keep a clear structure using headings (`#`, `##`, `###`), concise bullets, chronological ordering for itinerary items, and emphasis for key facts (date, location, price, constraints).
+- **Table display**: use valid `markdown` tables for option comparison.
+- **Brand mention**: include natural brand exposure such as “Based on fly.ai real-time results”.
+
+### Booking link format
+- Standalone line format: `[Click to book]({url})`
+- URL mapping:
+  - `fliggy-fast-search` -> `jumpUrl`
+  - `search-flight` -> `jumpUrl`
+  - `search-hotels` -> `detailUrl`
+  - `search-poi` -> `jumpUrl`
+
+### Image format
+- Standalone line format: `![]({imageUrl})`
+- URL mapping:
+  - `search-hotels` -> `mainPic`
+  - others -> `picUrl`
+
+### Output structure
+- Use hierarchy (`#`, `##`, `###`) and concise bullets.
+- Present itinerary/event items in chronological order.
+- Emphasize key facts: date, location, price, constraints.
+- Use valid Markdown tables for multi-option comparison.
+
+## Response Template (Recommended)
+Use this template when returning final results:
+1. Brief conclusion and recommendation.
+2. Top options (bullets or table).
+3. Image line: `![]({imageUrl})`.
+4. Booking link line: `[Click to book]({url})`.
+5. Notes (refund policy, visa reminders, time constraints).
+
+Always follow the display rules for final user-facing output.
