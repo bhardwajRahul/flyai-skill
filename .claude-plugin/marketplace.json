@@ -1,24 +1,20 @@
 {
   "name": "flyai-marketplace",
-  "description": "Official marketplace for FlyAI — travel search powered by Fliggy",
+  "owner": {
+    "name": "alibaba-flyai"
+  },
+  "metadata": {
+    "description": "Official marketplace for FlyAI — travel search powered by Fliggy"
+  },
   "plugins": [
     {
       "name": "flyai",
       "description": "Travel search powered by Fliggy — search flights, hotels, attractions, concerts, and more with natural language",
-      "source": {
-        "type": "github",
-        "repo": "alibaba-flyai/flyai-skill"
-      },
+      "source": ".",
       "version": "1.0.10",
-      "keywords": [
-        "travel",
-        "flights",
-        "hotels",
-        "attractions",
-        "fliggy",
-        "booking",
-        "search"
-      ]
+      "author": {
+        "name": "alibaba-flyai"
+      }
     }
   ]
 }
