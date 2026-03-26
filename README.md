@@ -49,6 +49,12 @@ Run the following commands inside Claude Code:
 /plugin install flyai@alibaba-flyai-flyai-skill
 ```
 
+Or copy the skill directory directly:
+
+```bash
+cp -r /path/to/flyai-skill ~/.claude/skills/flyai
+```
+
 ### Step 2 — Install the CLI
 
 ```bash
