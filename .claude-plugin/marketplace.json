@@ -1,5 +1,5 @@
 {
-  "name": "flyai-travel-search-marketplace",
+  "name": "flyai-marketplace",
   "owner": {
     "name": "alibaba-flyai"
   },
@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "flyai-travel-search",
+      "name": "flyai",
       "description": "Travel search powered by Fliggy — search flights, hotels, attractions, concerts, and more with natural language",
       "source": {
         "source": "url",

@@ -34,7 +34,7 @@ You're deep in a conversation with your AI coding agent — planning a trip, res
 
 ```bash
 # via clawhub (Recommended)
-clawhub install flyai-travel-search
+clawhub install flyai
 
 # or via npx
 npx skills add alibaba-flyai/flyai-skill

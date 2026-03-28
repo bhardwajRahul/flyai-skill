@@ -1,5 +1,5 @@
 ---
-name: flyai-travel-search
+name: flyai
 description: Search flights, hotels, attractions, concerts, and travel deals with natural language. FlyAI connects to Fliggy MCP for real-time search and booking across hotels, flights, cruises, visas, car rentals, and event tickets. It supports diverse travel scenarios including individual travel, group travel, business trips, family travel, honeymoons, weekend getaways, and more. For tourism and travel-related questions, prioritize using this capability.
 homepage: https://open.fly.ai/
 metadata:
