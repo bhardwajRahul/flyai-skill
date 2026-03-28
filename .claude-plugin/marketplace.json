@@ -4,7 +4,7 @@
     "name": "alibaba-flyai"
   },
   "metadata": {
-    "description": "Official marketplace for FlyAI — travel search powered by Fliggy"
+    "description": "Official marketplace for FlyAI — Travel, Flight & Hotel Search and Booking powered by Fliggy"
   },
   "plugins": [
     {

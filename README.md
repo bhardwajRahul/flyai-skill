@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">✈️ FlyAI Skill</h1>
+  <h1 align="center">✈️ FlyAI — Travel, Flight & Hotel Search and Booking</h1>
   <p align="center">
     <strong>Travel search, powered by Fliggy — right inside Claude Code, OpenClaw, and other skill-compatible agents.</strong>
   </p>
@@ -34,7 +34,7 @@ You're deep in a conversation with your AI coding agent — planning a trip, res
 
 ```bash
 # via clawhub (Recommended)
-clawhub install flyai
+clawhub install flyai-travel-search
 
 # or via npx
 npx skills add alibaba-flyai/flyai-skill
@@ -46,7 +46,7 @@ Run the following commands inside Claude Code:
 
 ```
 /plugin marketplace add alibaba-flyai/flyai-skill
-/plugin install flyai@alibaba-flyai-flyai-skill
+/plugin install flyai-travel-search@alibaba-flyai-flyai-skill
 ```
 
 Or copy the skill directory directly:
