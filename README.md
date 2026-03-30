@@ -8,11 +8,22 @@
     No browser tabs. No app switching. Just ask.
   </p>
   <p align="center">
+    <a href="https://www.npmjs.com/package/@fly-ai/flyai-cli"><img src="https://img.shields.io/npm/v/@fly-ai/flyai-cli?label=flyai-cli&color=blue" alt="npm version"></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License"></a>
+    <a href="https://github.com/alibaba-flyai/flyai-skill/stargazers"><img src="https://img.shields.io/github/stars/alibaba-flyai/flyai-skill?style=social" alt="GitHub Stars"></a>
+    <a href="https://github.com/alibaba-flyai/flyai-skill"><img src="https://img.shields.io/badge/version-1.0.12-orange" alt="Skill Version"></a>
+  </p>
+  <p align="center">
     <a href="https://open.fly.ai/">Homepage</a> ·
     <a href="#quick-start">Quick Start</a> ·
     <a href="#commands">Commands</a> ·
+    <a href="#featured-use-cases">Use Cases</a> ·
     <a href="#examples">Examples</a>
   </p>
+</p>
+
+<p align="center">
+  <img src="assets/demo.gif" alt="FlyAI Demo" width="700">
 </p>
 
 ---
@@ -227,6 +238,38 @@ flyai search-poi --city-name "Hangzhou" --keyword "West Lake" --category "山湖
 | `--category` | Single category from: 自然风光 · 山湖田园 · 森林丛林 · 峡谷瀑布 · 沙滩海岛 · 沙漠草原 · 人文古迹 · 古镇古村 · 历史古迹 · 园林花园 · 宗教场所 · 主题乐园 · 水上乐园 · 影视基地 · 动物园 · 植物园 · 海洋馆 · 体育场馆 · 演出赛事 · 剧院剧场 · 博物馆 · 纪念馆 · 展览馆 · 地标建筑 · 市集 · 文创街区 · 城市观光 · 滑雪 · 漂流 · 冲浪 · 潜水 · 露营 · 温泉 |
 
 </details>
+
+## Featured Use Cases
+
+### Weekend Getaway Planning
+
+> "Find me a weekend trip from Shanghai — cheap flights, a nice hotel near the beach, and some fun things to do"
+
+FlyAI chains `search-flight`, `search-hotel`, and `search-poi` to give you a complete trip plan with prices and booking links.
+
+### Budget Flight Hunting
+
+> "What's the cheapest direct flight from Beijing to Bangkok in May?"
+
+```
+/flyai search-flight --origin "Beijing" --destination "Bangkok" --dep-date-start 2026-05-01 --dep-date-end 2026-05-31 --journey-type 1 --sort-type 3
+```
+
+### Group Trip Coordination
+
+> "Compare 4-star hotels in Sanya with twin beds for under ¥500/night, sorted by rating"
+
+```
+/flyai search-hotel --dest-name "Sanya" --hotel-stars 4 --hotel-bed-types "双床房" --max-price 500 --sort rate_desc
+```
+
+### Local Exploration
+
+> "What are the top nature attractions in Guilin?"
+
+```
+/flyai search-poi --city-name "Guilin" --category "自然风光" --poi-level 5
+```
 
 ## Examples
 
