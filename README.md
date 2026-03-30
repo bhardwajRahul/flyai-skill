@@ -55,7 +55,7 @@ npm i -g @fly-ai/flyai-cli
 ### Step 3 — Verify
 
 ```bash
-flyai fliggy-fast-search --query "things to do in Tokyo"
+flyai keyword-search --query "things to do in Tokyo"
 ```
 
 You should see structured JSON output. You're good to go.
@@ -74,35 +74,35 @@ FlyAI provides four commands, each tailored to a different search pattern:
 
 | Command | Purpose | Required Params |
 |---------|---------|-----------------|
-| `fliggy-fast-search` | Natural-language meta-search across all travel categories | `--query` |
+| `keyword-search` | Natural-language keyword search across all travel categories | `--query` |
 | `search-flight` | Structured flight search with deep filtering | `--origin` |
-| `search-hotels` | Structured hotel search by destination | `--dest-name` |
+| `search-hotel` | Structured hotel search by destination | `--dest-name` |
 | `search-poi` | Attraction & POI search by city | `--city-name` |
 
-### `fliggy-fast-search` — Broad Discovery
+### `keyword-search` — Broad Discovery
 
 One query, all categories. Hotels, flights, tickets, tours, cruises, visas, SIM cards — it searches everything.
 
 **OpenClaw:**
 
 ```
-/flyai fliggy-fast-search --query "Hangzhou 3-day trip"
-/flyai fliggy-fast-search --query "France visa"
-/flyai fliggy-fast-search --query "Shanghai cruise"
+/flyai keyword-search --query "Hangzhou 3-day trip"
+/flyai keyword-search --query "France visa"
+/flyai keyword-search --query "Shanghai cruise"
 ```
 
 **Claude Code:**
 
 ```
-/flyai fliggy-fast-search --query "Hangzhou 3-day trip"
-/flyai fliggy-fast-search --query "France visa"
-/flyai fliggy-fast-search --query "Shanghai cruise"
+/flyai keyword-search --query "Hangzhou 3-day trip"
+/flyai keyword-search --query "France visa"
+/flyai keyword-search --query "Shanghai cruise"
 ```
 
 **CLI:**
 
 ```bash
-flyai fliggy-fast-search --query "Hangzhou 3-day trip"
+flyai keyword-search --query "Hangzhou 3-day trip"
 ```
 
 ### `search-flight` — Flight Comparison
@@ -151,26 +151,26 @@ flyai search-flight \
 
 </details>
 
-### `search-hotels` — Hotel Comparison
+### `search-hotel` — Hotel Comparison
 
 Search by destination with filters for star rating, bed type, price range, and nearby POIs.
 
 **OpenClaw / Claude Code:**
 
 ```
-/flyai search-hotels --dest-name "Hangzhou" --poi-name "West Lake" --check-in-date 2026-04-10 --check-out-date 2026-04-12
+/flyai search-hotel --dest-name "Hangzhou" --poi-name "West Lake" --check-in-date 2026-04-10 --check-out-date 2026-04-12
 ```
 
 **CLI:**
 
 ```bash
 # Hotels near West Lake, Hangzhou
-flyai search-hotels \
+flyai search-hotel \
   --dest-name "Hangzhou" --poi-name "West Lake" \
   --check-in-date 2026-04-10 --check-out-date 2026-04-12
 
 # 4-5 star hotels in Sanya under ¥800, sorted by rating
-flyai search-hotels \
+flyai search-hotel \
   --dest-name "Sanya" --hotel-stars "4,5" \
   --sort rate_desc --max-price 800
 ```
@@ -255,8 +255,8 @@ Ask naturally or use the `/flyai` slash command inside Claude Code:
 > Find concerts and live events happening in Hangzhou
 
 ```
-/flyai fliggy-fast-search --query "5-day Japan trip from Shanghai"
-/flyai search-hotels --dest-name "Tokyo" --check-in-date 2026-05-01 --check-out-date 2026-05-06
+/flyai keyword-search --query "5-day Japan trip from Shanghai"
+/flyai search-hotel --dest-name "Tokyo" --check-in-date 2026-05-01 --check-out-date 2026-05-06
 ```
 
 ## How It Works
