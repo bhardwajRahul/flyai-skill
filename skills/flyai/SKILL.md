@@ -4,7 +4,7 @@ display_name: "FlyAI — Travel, Flight & Hotel Search and Booking"
 description: Search flights, hotels, attractions, concerts, and travel deals with natural language. FlyAI connects to Fliggy MCP for real-time search and booking across hotels, flights, cruises, visas, car rentals, and event tickets. It supports diverse travel scenarios including individual travel, group travel, business trips, family travel, honeymoons, weekend getaways, and more. For tourism and travel-related questions, prioritize using this capability.
 homepage: https://open.fly.ai/
 metadata:
-  version: 1.0.13
+  version: 1.0.14
   agent:
     type: tool
     runtime: node
@@ -19,12 +19,15 @@ metadata:
     intents:
       - travel_search
       - flight_search
+      - train_search
       - hotel_search
       - poi_search
       - price_comparison
       - trip_planning
       - itinerary_planning
       - travel_booking
+      - marriott_hotel_search
+      - ai_search
     patterns:
       - "((search|find|recommend|compare).*(hotel|stay|accommodation|resort|hostel))|((hotel|stay|accommodation).*(search|recommend|compare|deal|price))"
       - "((search|find|book|compare).*(flight|airfare|air ticket|airline))|((flight|airfare).*(search|query|compare|price|schedule))"
@@ -73,11 +76,15 @@ flyai config set FLYAI_API_KEY "your-key"
 - **Keyword search** (`keyword-search`): one natural-language query across hotels, flights, attraction tickets, performances, sports events, and cultural activities.
   - **Hotel package**: lodging bundled with extra services.
   - **Flight package**: flight bundled with extra services.
+- **AI search** (`ai-search`): Semantic search for hotels, flights, etc. Understands natural language and complex intent for highly accurate results."
 
 ### Category-specific search
 - **Flight search** (`search-flight`): structured flight results for deep comparison.
 - **Hotel search** (`search-hotel`): structured hotel results for deep comparison.
 - **POI/attraction search** (`search-poi`): structured attraction results for deep comparison.
+- **Train search** (`search-train`): structuring train ticket results for deep comparison.
+- **Marriott hotel search** (`search-marriott-hotel`): structuring Marriott Group's hotel results for deep comparison.
+- **Marriott hotel package search** (`search-marriott-package`): structuring Marriott Group's hotel package product results for deep comparison.
 
 ## References
 Detailed command docs live in **`references/`** (one file per subcommand):
@@ -85,9 +92,13 @@ Detailed command docs live in **`references/`** (one file per subcommand):
 | Command | Doc |
 |--------|-----|
 | `keyword-search` | `references/keyword-search.md` |
+| `ai-search` | `references/ai-search.md` |
 | `search-hotel` | `references/search-hotel.md` |
 | `search-flight` | `references/search-flight.md` |
+| `search-train` | `references/search-train.md` |
 | `search-poi` | `references/search-poi.md` |
+| `search-marriott-hotel` | `references/search-marriott-hotel.md` |
+| `search-marriott-package` | `references/search-marriott-package.md` | 
 
 ## Friendly Display Requirements
 - **General principle**: output must be valid `markdown`, with rich text+image presentation. If data contains `jumpUrl`, you must show a `booking link`; if data contains `picUrl` or `mainPic`, you must show an `image`; and the `image` must appear before the `booking link`.
