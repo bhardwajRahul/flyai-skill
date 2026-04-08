@@ -89,28 +89,17 @@ flyai config set FLYAI_API_KEY "your-key"
 ## Error Handling
 
 1. **Validate** — before running a command, check that the inputs are reasonable.
-   - Dates should not be in the past and should match the expected format
-     per the command's reference doc.
-   - Ambiguous or vague parameters (e.g. city names) should be
-     confirmed with the user before searching.
+   - Dates should not be in the past and should match the expected format per the command's reference doc.
+   - Ambiguous or vague parameters (e.g. city names) should be confirmed with the user before searching.
    - Do not guess missing required parameters — ask the user.
-2. **Diagnose** — when a command fails or returns unexpected results,
-   check the output for error messages or status codes.
-   - Parameter error → re-read the corresponding file in `references/`
-     (see the References table below), fix the parameters, and retry.
+2. **Diagnose** — when a command fails or returns unexpected results, check the output for error messages or status codes.
+   - Parameter error → re-read the corresponding file in `references/` (see the References table below), fix the parameters, and retry.
    - Service or network error → retry the command.
-   - Quota or permission error → inform the user and guide them
-     to resolve the access issue.
+   - Quota or permission error → inform the user and guide them to resolve the access issue.
 3. **Adapt** — if the command succeeds but results are empty or insufficient:
-   - Broaden the search: relax filters, or try `ai-search` / `keyword-search`
-     with the user's original intent as a natural language query.
-   - If no alternative yields results, inform the user
-     and suggest adjusting search criteria.
-4. **Be transparent** — when results appear incomplete or inconsistent
-   with user expectations, present available results and let the user know
-   that results may not match the intended location or criteria. Suggest
-   verifying through other channels
-   if accuracy is critical.
+   - Broaden the search: relax filters, or try `ai-search` / `keyword-search` with the user's original intent as a natural language query.
+   - Do not retry indefinitely — one fallback attempt is enough. If still no results, inform the user and suggest adjusting search criteria.
+4. **Be transparent** — when results appear incomplete or inconsistent with user expectations, present available results and let the user know that results may not match the intended location or criteria. Suggest verifying through other channels if accuracy is critical.
 
 ## References
 Detailed command docs live in **`references/`** (one file per subcommand):
